@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <security-role>
+        <role-name>guest</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>FirstAuth</web-resource-name>
+<!--            <url-pattern>/bookMarket/addBook.jsp</url-pattern>-->
+            <url-pattern>/shoppingMall/addProduct.jsp</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <description>권한 관리자명</description>
+            <role-name>guest</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+<!--            <form-login-page>/bookMarket/login.jsp</form-login-page>-->
+<!--            <form-error-page>/bookMarket/login_failed.jsp</form-error-page>-->
+
+<!--            <form-login-page>/shoppingMall/login.jsp</form-login-page>-->
+<!--            <form-error-page>/shoppingMall/login_failed.jsp</form-error-page>-->
+        </form-login-config>
+    </login-config>
+
+<!--    오류가 발생했을때 오류 상태와 오류 페이즈를 출력하도록 작성한다. 페이지 유도하기.    -->
+    <error-page>
+<!--        <error-code>500</error-code>-->
+<!--        <location>/exception_Page/Ex01_errorCode_error.jsp</location>-->
+
+<!--        <exception-type>java.lang.Exception</exception-type>-->
+<!--        <location>/exception_Page/Ex04_exceptionType_error.jsp</location>-->
+
+        <error-code>404</error-code>
+        <location>/bookMarket/exceptionNoPage.jsp</location>
+    </error-page>
+
+
+
+
+<!--    <servlet>-->
+<!--        <servlet-name>myController</servlet-name>-->
+<!--        <servlet-class>com.example.jsp_study.controllers.ControllerServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>myController</servlet-name>-->
+<!--        <url-pattern>/servlet_mvcJSP/ControllerServlet&lt;!&ndash; 특정 url &ndash;&gt;</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <servlet>-->
+<!--        <servlet-name>BoardController</servlet-name>-->
+<!--        <servlet-class>com.example.jsp_study.market.mvc.controllers.BoardController</servlet-class>-->
+<!--    </servlet>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>BoardController</servlet-name>-->
+<!--        <url-pattern>*.do</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+</web-app>

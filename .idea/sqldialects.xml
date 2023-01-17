@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/jsp_study/market/daos/CartDao.java" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/jsp_study/market/daos/ProductDao.java" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/jsp_study/market/mvc/models/daos/BoardDao.java" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/bookMarket/bookProducts.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/bookMarket/editBook.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/bookMarket/processAddBook.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/bookMarket/updateBook.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex02_delete_process.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex02_insert_process.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex02_select.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex02_update_process.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex03_delete_process.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex03_insert_process_prepareStatement.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex03_select.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/Ex03_update_process.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/db_test/test02_insert_process.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/database_sql_connection/db_test/text03_select.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/deleteProduct.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/editProduct.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/memberList.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/processAddProduct.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/processLoginAdmin.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/processUpdateAdmin.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/processUpdateProduct.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/admin/updateProduct.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/member/processLoginMember.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/shop/product.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/shop/products.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/shoppingMall/shop_db/product.jsp" dialect="MariaDB" />
+  </component>
+</project>
