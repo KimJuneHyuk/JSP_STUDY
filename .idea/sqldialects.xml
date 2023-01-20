@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/jsp_study/market/daos/CartDao.java" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/jsp_study/market/daos/ProductDao.java" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/jsp_study/market/mvc/models/daos/BoardDao.java" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/example/jsp_study/market/mvc/models/daos/RippleDao.java" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/bookMarket/bookProducts.jsp" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/bookMarket/editBook.jsp" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/bookMarket/processAddBook.jsp" dialect="MariaDB" />

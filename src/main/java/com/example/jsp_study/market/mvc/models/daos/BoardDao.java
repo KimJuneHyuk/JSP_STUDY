@@ -3,6 +3,7 @@ package com.example.jsp_study.market.mvc.models.daos;
 import com.example.jsp_study.market.mvc.database.DBConnection;
 import com.example.jsp_study.market.mvc.models.dtos.BoardDto;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -127,7 +128,6 @@ public class BoardDao {
         return boardList;
     }
 
-
     public String getLoginNameById(String id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -192,6 +192,34 @@ public class BoardDao {
                 throw new RuntimeException(e.getMessage());
             }
         }
+//        for (int i = 0; i < 100; i++) {
+//            try {
+//                conn = DBConnection.getConnection();
+//                String sql = "insert into `WebMarketDB`.`board` values(?, ?, ?, ?, ?, ?, ?, ?)";
+//
+//                pstmt = conn.prepareStatement(sql);
+//                pstmt.setInt(1, board.getNum());
+//                pstmt.setString(2, board.getId());
+//                pstmt.setString(3, board.getName());
+//                pstmt.setString(4, board.getSubject() + i);
+//                pstmt.setString(5, board.getContent());
+//                pstmt.setString(6, board.getRegistDay());
+//                pstmt.setInt(7, board.getHit());
+//                pstmt.setString(8, board.getIp());
+//
+//                pstmt.executeUpdate();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                System.out.println("getLoginNameById  에러 코드 : " + e);
+//            } finally {
+//                try {
+//                    if (pstmt != null) pstmt.close();
+//                    if (conn != null) conn.close();
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e.getMessage());
+//                }
+//            }
+//        }
     }
 
 

@@ -1,7 +1,9 @@
 package com.example.jsp_study.market.mvc.controllers;
 
 import com.example.jsp_study.market.mvc.models.daos.BoardDao;
+import com.example.jsp_study.market.mvc.models.daos.RippleDao;
 import com.example.jsp_study.market.mvc.models.dtos.BoardDto;
+import com.example.jsp_study.market.mvc.models.dtos.RippleDto;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +22,7 @@ import java.util.List;
 @WebServlet("*.do")
 public class BoardController extends HttpServlet {
     static final int LISTCOUNT = 5; // 페이지당 게시물 수 고정으로 5개 설정.
+    private String boardName = "board";
 
 //    Commemd commemd = null;
     @Override
@@ -39,13 +44,21 @@ public class BoardController extends HttpServlet {
 
 //        /shoppingMall/board/BoardListAction.do?pageNum=1
         if (command.contains("/BoardListAction.do")) {   // 등록된 글 목록 페이지를 출력하기.
-            System.out.println(command);
+//            System.out.println(command);
             requestBoardList(req);
+
+            String name = (String) req.getSession().getAttribute("sessionName");
+            req.setAttribute("sessionName", name);
+            String sessionId = (String) req.getSession().getAttribute("sessionId");
+            req.setAttribute("sessionId", sessionId);
+
             RequestDispatcher rd = req.getRequestDispatcher("../board/list.jsp");
             rd.forward(req,resp);
 
         } else if (command.contains("/BoardWriteForm.do")) {
-            requestLoginName(req);
+//            requestLoginName(req); == setAttribute("name". 이기행);
+            String name = (String) req.getSession().getAttribute("sessionName");
+            req.setAttribute("name", name);
             RequestDispatcher rd = req.getRequestDispatcher("../board/writeForm.jsp");
             rd.forward(req, resp);
 
@@ -56,6 +69,8 @@ public class BoardController extends HttpServlet {
 
         } else if (command.contains("/BoardViewAction.do")) {   //선택된 글 상세 페이지 가져오기
             RequestBoardView(req);
+            RequestRippleList(req);
+
             RequestDispatcher rd = req.getRequestDispatcher("../board/BoardView.do");
             rd.forward(req, resp);
 
@@ -75,18 +90,68 @@ public class BoardController extends HttpServlet {
             rd.forward(req, resp);
 
         }
-
-
         else if (command.contains("/BoardDeleteAction.do")) { // 글 삭제를 클릭 했을 경우 삭제
             requestBoardDelete(req);
             RequestDispatcher rd = req.getRequestDispatcher("../board/BoardListAction.do");
             rd.forward(req, resp);
 
+        } else if (command.contains("BoardRippleWriteAction.do")) {
+            requestGalleryBoardRippleWrite(req);
+
+            int num = Integer.parseInt(req.getParameter("num"));
+            String pageNum = req.getParameter("pageNum");
+
+//            resp.sendRedirect("GalleryBoardViewAction.do?num=" + num + "&pageNum="+pageNum);
+            resp.sendRedirect("BoardViewAction.do?num=" + num + "&pageNum="+pageNum);
+
+        } else if (command.contains("BoardRippleDeleteAction.do")) {
+            requestBoardRippleDelete(req);
+
+            int num = Integer.parseInt(req.getParameter("num"));
+            int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+            resp.sendRedirect("BoardViewAction.do?num="+num+"&pageNum="+ pageNum);
         }
 
 
     }
 
+    private void RequestRippleList(HttpServletRequest req) {
+        RippleDao dao = RippleDao.getInstance();
+        List<RippleDto> rippleList = new ArrayList<>();
+        int num = Integer.parseInt(req.getParameter("num"));
+
+        rippleList = dao.getRippleList(this.boardName, num);
+        req.setAttribute("rippleList", rippleList);
+    }
+
+    private void requestBoardRippleDelete(HttpServletRequest req) {
+        int rippleId = Integer.parseInt(req.getParameter("rippleId"));
+
+        RippleDao dao = RippleDao.getInstance();
+        RippleDto ripple = new RippleDto();
+        ripple.setRippleId(rippleId);
+        dao.deleteRipple(ripple);
+
+    }
+
+
+    private void requestGalleryBoardRippleWrite(HttpServletRequest req) throws UnsupportedEncodingException {
+        int num = Integer.parseInt(req.getParameter("num"));
+        RippleDao dao = RippleDao.getInstance();
+        RippleDto ripple = new RippleDto();
+
+        req.setCharacterEncoding("utf-8");
+
+        HttpSession session = req.getSession();
+        ripple.setBoardName(this.boardName);
+        ripple.setBoardNum(num);
+        ripple.setMemberId((String) session.getAttribute("sessionId"));
+        ripple.setName(req.getParameter("name"));
+        ripple.setContent(req.getParameter("content"));
+        ripple.setIp(req.getRemoteAddr());
+
+        dao.insertRipple(ripple);
+    }
 
 
     //    등록된 글 목록을 가져오는 메서드 list.jsp   페이징 처리까지 같이 하는 곳
@@ -121,6 +186,7 @@ public class BoardController extends HttpServlet {
         req.setAttribute("total_page", total_page);
         req.setAttribute("total_record", total_record);
         req.setAttribute("boardList", boardList);
+        req.setAttribute("limit", limit);
     }
 
 //   글 쓰기 페이지 WriteForm.jsp
@@ -142,9 +208,9 @@ public class BoardController extends HttpServlet {
         board.setSubject(req.getParameter("subject"));
         board.setContent(req.getParameter("content"));
 
-        System.out.println(req.getParameter("name"));
-        System.out.println(req.getParameter("subject"));
-        System.out.println(req.getParameter("content"));
+//        System.out.println(req.getParameter("name"));
+//        System.out.println(req.getParameter("subject"));
+//        System.out.println(req.getParameter("content"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
         String regist_day = formatter.format(new Date());
 
